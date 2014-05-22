@@ -1,0 +1,11 @@
+{
+  "name": "traintoproclaim/ttp-wp-results",
+  "description": "Wordpress plugin for Train To Proclaim results",
+  "type": "wordpress-plugin",
+  "require-dev": {
+    "twbs/bootstrap": "3.*",
+  },
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
