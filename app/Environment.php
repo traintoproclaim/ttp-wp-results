@@ -3,16 +3,55 @@ namespace TTP_Results;
 
 class Environment {
 	
+	/**
+	 * @var string
+	 */
 	public $themePath;
 	
+	/**
+	 * @var string
+	 */
 	public $pluginPath;
 
+	/**
+	 * @var string
+	 */
 	public $viewPath;
+	
+	/**
+	 * @var string
+	 */
+	public $clientPath;
 	
 	function __construct() {
 		$this->pluginPath = realpath(__DIR__ . '/../');
-		$this->themePath = $this->pluginPath . '/theme';
-		$this->viewPath = $this->pluginPath . '/views';
+		$this->themePath  = $this->pluginPath . '/theme';
+		$this->viewPath   = $this->pluginPath . '/views';
+		$this->clientPath = $this->pluginPath . '/client';
+	}
+
+	/**
+	 * Returns all the scripts for the give app.
+	 * The scripts are all under clients/$app
+	 * @param string $app
+	 * @return multitype:string
+	 */
+	function scriptPaths($app) {
+		$it = new \RecursiveDirectoryIterator($this->clientPath . '/' . $app);
+		$it = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::SELF_FIRST);
+	
+		$baseLength = strlen(ABSPATH);
+		$scripts = array();
+		foreach ($it as $file) {
+			if ($file->isFile()) {
+				$ext = $file->getExtension();
+				$isMin = (strpos($file->getPathname(), '-min') !== false);
+				if (!$isMin && $ext == 'js') {
+					$scripts[] = '/' . substr($file->getPathname(), $baseLength);
+				}
+			}
+		}
+		return $scripts;
 	}
 
 	function locate_plugin_template($templateNames) {

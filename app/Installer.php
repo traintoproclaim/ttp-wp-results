@@ -16,7 +16,7 @@ class Installer {
 		$this->_db = $db;
 		$this->_pages = array(
 			'results' => array(
-					'name' => 'results-page',
+					'name' => 'results',
 					'title' => __( 'Results', 'ttp_results' ),
 					'tag' => '[ttpResults]'
 			)
