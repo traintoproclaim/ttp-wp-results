@@ -32,6 +32,8 @@ class Api extends \Pimple
 			$callback = $route->getTarget();
 			$params = $route->getParameters();
 			$response = $callback($params);
+		} else {
+			throw new \Exception(sprintf("API Error: No route for '%s'", $_SERVER['REQUEST_URI']));
 		}
 		return $response;
 	}

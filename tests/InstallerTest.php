@@ -5,11 +5,13 @@ use TTP_Results\Installer;
 require_once(__DIR__ . '/TestConfig.php');
 require_once(TTP_RESULTS_SRCPATH . '/vendor/autoload.php');
 
+require_once(TTP_RESULTS_TESTPATH . '/TestEnvironment.php');
+
 class InstallerTest extends PHPUnit_Framework_TestCase {
 
 	function testConstructor() {
-		require_once(WP_PATH . '/wp-load.php');
-
+		$e = new TestEnvironment();
+		
 		$page = array(
 			'name' => 'test-page',
 			'title' => __( 'Test', 'test' ),
