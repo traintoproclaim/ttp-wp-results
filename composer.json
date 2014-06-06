@@ -2,12 +2,19 @@
   "name": "traintoproclaim/ttp-wp-results",
   "description": "Wordpress plugin for Train To Proclaim results",
   "type": "wordpress-plugin",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/sillsdev/web-php-mapper"
+    }
+  ],  
   "require-dev": {
-    "twbs/bootstrap": "3.*",
-  	"doctrine/dbal": "2.4.*",
-  	"symfony/console": "2.4.*",
-  	"pimple/pimple": "2.0.*",
-  	"phpunit/phpunit": "4.1.*"
+    "twbs/bootstrap": "~3.1.1",
+  	"doctrine/dbal": "~2.4.2",
+  	"symfony/console": "~2.5.0",
+  	"pimple/pimple": "~2.0.0",
+  	"phpunit/phpunit": "~3.7.37",
+    "sillsdev/web-php-mapper": "dev-master"
   },
   "require": {
     "composer/installers": "~1.0"
