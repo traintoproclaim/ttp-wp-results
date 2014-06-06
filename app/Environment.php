@@ -24,10 +24,14 @@ class Environment {
 	public $clientPath;
 	
 	function __construct() {
-		$this->pluginPath = realpath(__DIR__ . '/../');
+		$this->pluginPath = self::toURL(realpath(__DIR__ . '/../'));
 		$this->themePath  = $this->pluginPath . '/theme';
 		$this->viewPath   = $this->pluginPath . '/views';
 		$this->clientPath = $this->pluginPath . '/client';
+	}
+	
+	static function toURL($path) {
+		return str_replace('\\', '/', $path);
 	}
 
 	/**
@@ -47,7 +51,7 @@ class Environment {
 				$ext = $file->getExtension();
 				$isMin = (strpos($file->getPathname(), '-min') !== false);
 				if (!$isMin && $ext == 'js') {
-					$scripts[] = '/' . substr($file->getPathname(), $baseLength);
+					$scripts[] = '/' . self::toURL(substr($file->getPathname(), $baseLength));
 				}
 			}
 		}

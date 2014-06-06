@@ -8,7 +8,7 @@ require_once(__DIR__ . '/TestConfig.php');
 class EnvironmentTest extends PHPUnit_Framework_TestCase {
 
 	function testConstructor() {
-		$expectedPluginPath = realpath(__DIR__ . '/..');
+		$expectedPluginPath = str_replace('\\', '/', realpath(__DIR__ . '/..'));
 		
 		$m = new Environment();
 		$this->assertEquals($expectedPluginPath, $m->pluginPath);
